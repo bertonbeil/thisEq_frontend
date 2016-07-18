@@ -1235,7 +1235,17 @@ input.ui-colorpicker-hex-input {
       height: 60px;
       clear: right;
       overflow: hidden;
-      margin: 20px 2px;
+      margin: 20px 0;
+    }
+    div.modelSliders {
+      float: left;
+    }
+    div.modelOutputTest {
+      margin-left: 2%;
+      margin-right: 2%;
+    }
+    div.modelCustomSvg {
+      float: right;
     }
     div.modelSvgOutput{
       position: relative;
@@ -1270,8 +1280,22 @@ input.ui-colorpicker-hex-input {
         background-image: url(/static/graphics/thisEquals/icons/box_custom.svg);
     }
     div.model_options.active::before {
-        z-index: -1;
-        background-image: none;
+        z-index: 759;
+        top: -70px;
+        width: 33%;
+        height: 60px;
+        border-radius: 3px;
+    }
+    div.modelSliders.active::before {
+      left: 0;
+    }
+    div.modelOutputTest.active::before {
+      left: 50%;
+      margin-left: -16.5%;
+    }
+    div.modelCustomSvg.active::before {
+      right: 0;
+      left: initial;
     }
     div.model_options.active {
         position: absolute;
@@ -1280,7 +1304,7 @@ input.ui-colorpicker-hex-input {
         width: 100%;
         height: initial;
         z-index: 505;
-        overflow: hidden;
+        overflow: visible;
     }
     .close_model {
         position: absolute;
