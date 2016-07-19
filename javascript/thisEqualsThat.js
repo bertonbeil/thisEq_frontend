@@ -1897,12 +1897,43 @@ $().ready(function(){
     $('.hamburger').on('click', function(){
 
           var menuBtn = $(this),
+              wWidth = $(window).outerWidth(),
               openMenu = $('.open-menu'),
               menuWrap = $('.modelClasses'),
               menuItemList = $('#modelClassUL'),
+              modelClassLI = $('.modelClassLI'),
               body = $('body');
 
           menuBtn.toggleClass('is-active');
+
+          modelClassLI.on('dblclick', function () {
+            console.debug('double click');
+
+              body.removeClass('open');
+              $('.hamburger').removeClass('is-active');
+              menuItemList.css('width', '0');
+              setTimeout(function(){
+                menuWrap.removeClass('active');
+                openMenu.hide();
+              }, 600);
+
+          });
+
+          if ( wWidth <= 768 ) {
+
+            modelClassLI.on('click', function () {
+                body.removeClass('open');
+                $('.hamburger').removeClass('is-active');
+                menuItemList.css('width', '0');
+                setTimeout(function(){
+                  menuWrap.removeClass('active');
+                  openMenu.hide();
+                }, 600);
+
+            });
+
+          }
+
 
           if ( menuBtn.hasClass('is-active') ) {
 
@@ -1924,6 +1955,7 @@ $().ready(function(){
               });
 
           } else {
+
             body.removeClass('open');
             $('.hamburger').removeClass('is-active');
             menuItemList.css('width', '0');
@@ -1940,7 +1972,35 @@ $().ready(function(){
 });
 
 
+(function($){
 
+  $.event.special.doubletap = {
+    bindType: 'touchend',
+    delegateType: 'touchend',
+
+    handle: function(event) {
+      var handleObj   = event.handleObj,
+          targetData  = jQuery.data(event.target),
+          now         = new Date().getTime(),
+          delta       = targetData.lastTouch ? now - targetData.lastTouch : 0,
+          delay       = delay == null ? 300 : delay;
+
+      if (delta < delay && delta > 30) {
+        targetData.lastTouch = null;
+        event.type = handleObj.origType;
+        ['clientX', 'clientY', 'pageX', 'pageY'].forEach(function(property) {
+          event[property] = event.originalEvent.changedTouches[0][property];
+        })
+
+        // let jQuery handle the triggering of "doubletap" event handlers
+        handleObj.handler.apply(this, arguments);
+      } else {
+        targetData.lastTouch = now;
+      }
+    }
+  };
+
+})(jQuery);
 
 
 $('head').append('<script src="https://use.fontawesome.com/cee7f18682.js"></script>');
