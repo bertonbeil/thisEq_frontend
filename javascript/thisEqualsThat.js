@@ -617,27 +617,27 @@ thisEqualsThat.oop = function()
                             display.modelOutputCtrl.removeClass('active');
                             display.modelCustomSvg.removeClass('active');
 
-                            display.boxSliders.toggleClass('active');
-                            display.boxOutputCtrl.removeClass('active');
-                            display.boxCustomSvg.removeClass('active');
+                            display.boxSliders.toggleClass('active').removeClass('shadow');
+                            display.boxOutputCtrl.removeClass('active').addClass('shadow');
+                            display.boxCustomSvg.removeClass('active').addClass('shadow');
                         break;
                       case 1:
                             display.modelOutputCtrl.toggleClass('active');
                             display.modelSliders.removeClass('active');
                             display.modelCustomSvg.removeClass('active');
 
-                            display.boxOutputCtrl.toggleClass('active');
-                            display.boxSliders.removeClass('active');
-                            display.boxCustomSvg.removeClass('active');
+                            display.boxOutputCtrl.toggleClass('active').removeClass('shadow');
+                            display.boxSliders.removeClass('active').addClass('shadow');
+                            display.boxCustomSvg.removeClass('active').addClass('shadow');
                         break;
                       case 2:
                             display.modelCustomSvg.toggleClass('active');
                             display.modelOutputCtrl.removeClass('active');
                             display.modelSliders.removeClass('active');
 
-                            display.boxCustomSvg.toggleClass('active');
-                            display.boxSliders.removeClass('active');
-                            display.boxOutputCtrl.removeClass('active');
+                            display.boxCustomSvg.toggleClass('active').removeClass('shadow');
+                            display.boxSliders.removeClass('active').addClass('shadow');
+                            display.boxOutputCtrl.removeClass('active').addClass('shadow');
                         break;
                     }
                 }
