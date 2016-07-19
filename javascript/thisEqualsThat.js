@@ -593,51 +593,46 @@ thisEqualsThat.oop = function()
       display.modelSliders              = $("<div class='modelSliders model_options'  />");
       display.modelSliders.append(this.getInputFields().inputFieldsSliders);
 
-      display.boxSliders    = $('<div class="boxSliders" />');
-      display.boxOutputCtrl = $('<div class="boxOutputCtrl" />');
-      display.boxCustomSvg  = $('<div class="boxCustomSvg" />');
+      display.boxSliders    = $('<div class="model_box_ctrl boxSliders" />');
+      display.boxOutputCtrl = $('<div class="model_box_ctrl boxOutputCtrl" />');
+      display.boxCustomSvg  = $('<div class="model_box_ctrl boxCustomSvg" />');
 
       display.modelOutputCtrl           = $("<div class='modelOutputCtrl model_options' />");
 
       display.modelCustomSvg            = $("<div class='modelCustomSvg model_options' />");
 
-      var models = [ display.modelSliders, display.modelOutputCtrl, display.modelCustomSvg ];
+      var models = [ display.boxSliders, display.boxOutputCtrl, display.boxCustomSvg ];
       $.each( models, function ( i, elem ) {
             elem.on('click', function () {
               console.debug( $('.model_options') );
                                     var self = $(this),
                                         wWidth = $(window).outerWidth(),
-                                        body = $('body'),
-                                        modelSvg = $('.modelSvgOutput'),
-                                        googleConnect = $('.googleConnect'),
-                                        openMenu = $('.open-menu');
+                                        googleConnect = $('.googleConnect');
 
                                           if ( wWidth <= 768 ) {
 
-                                            self.toggleClass('active');
-
                                             switch (i) {
                                               case 0:
+                                                    display.modelSliders.toggleClass('active');
                                                     display.modelOutputCtrl.removeClass('active');
                                                     display.modelCustomSvg.removeClass('active');
                                                 break;
                                               case 1:
+                                                    display.modelOutputCtrl.toggleClass('active');
                                                     display.modelSliders.removeClass('active');
                                                     display.modelCustomSvg.removeClass('active');
                                                 break;
                                               case 2:
+                                                    display.modelCustomSvg.toggleClass('active');
                                                     display.modelOutputCtrl.removeClass('active');
                                                     display.modelSliders.removeClass('active');
                                                 break;
                                             }
                                                           console.debug(i);
                                               if ( self.hasClass('active') ) {
-                                                var selfHeight = self.outerHeight();
-                                                modelSvg.css({'top': selfHeight + 100});  googleConnect.hide();
-                                                console.debug( selfHeight );
-
+                                                googleConnect.hide();
                                               } else {
-                                                modelSvg.css({'z-index': '1', 'top': '90px'});  googleConnect.show();
+                                                googleConnect.show();
                                               }
                                           }
                                       });
