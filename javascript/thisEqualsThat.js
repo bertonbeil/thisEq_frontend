@@ -593,14 +593,18 @@ thisEqualsThat.oop = function()
       display.modelSliders              = $("<div class='modelSliders model_options'  />");
       display.modelSliders.append(this.getInputFields().inputFieldsSliders);
 
-      display.modelOutputTest           = $("<div class='modelOutputTest model_options' />");
+      display.boxSliders    = $('<div class="boxSliders" />');
+      display.boxOutputCtrl = $('<div class="boxOutputCtrl" />');
+      display.boxCustomSvg  = $('<div class="boxCustomSvg" />');
+
+      display.modelOutputCtrl           = $("<div class='modelOutputCtrl model_options' />");
 
       display.modelCustomSvg            = $("<div class='modelCustomSvg model_options' />");
 
-      var models = [ display.modelSliders, display.modelOutputTest, display.modelCustomSvg ];
+      var models = [ display.modelSliders, display.modelOutputCtrl, display.modelCustomSvg ];
       $.each( models, function ( i, elem ) {
             elem.on('click', function () {
-
+              console.debug( $('.model_options') );
                                     var self = $(this),
                                         wWidth = $(window).outerWidth(),
                                         body = $('body'),
@@ -614,7 +618,7 @@ thisEqualsThat.oop = function()
 
                                             switch (i) {
                                               case 0:
-                                                    display.modelOutputTest.removeClass('active');
+                                                    display.modelOutputCtrl.removeClass('active');
                                                     display.modelCustomSvg.removeClass('active');
                                                 break;
                                               case 1:
@@ -622,7 +626,7 @@ thisEqualsThat.oop = function()
                                                     display.modelCustomSvg.removeClass('active');
                                                 break;
                                               case 2:
-                                                    display.modelOutputTest.removeClass('active');
+                                                    display.modelOutputCtrl.removeClass('active');
                                                     display.modelSliders.removeClass('active');
                                                 break;
                                             }
@@ -864,15 +868,18 @@ thisEqualsThat.oop = function()
 
       display.topModelDiv = $("<div class='modelInstance topModelDiv modelInstance'"+this.modelPosition+" />");
 
+      display.topModelDiv.append(display.boxSliders);
+      display.topModelDiv.append(display.boxOutputCtrl);
+      display.topModelDiv.append(display.boxCustomSvg);
       display.topModelDiv.append(display.modelSliders);
-      display.topModelDiv.append(display.modelOutputTest);
+      display.topModelDiv.append(display.modelOutputCtrl);
       display.topModelDiv.append(display.modelCustomSvg);
       display.topModelDiv.append(display.modelSvgOutput);
       display.modelSvgOutput.append(display.svgOutput);
-      display.modelOutputTest.append(display.modelOutputDisplay);
-      display.modelOutputTest.append(display.visualisationOutputContainer);
-      display.modelOutputTest.append(display.toggleFeatures);
-      display.modelOutputTest.append(display.colorControl);
+      display.modelOutputCtrl.append(display.modelOutputDisplay);
+      display.modelOutputCtrl.append(display.visualisationOutputContainer);
+      display.modelOutputCtrl.append(display.toggleFeatures);
+      display.modelOutputCtrl.append(display.colorControl);
       display.modelCustomSvg.append(display.svgSaveLink);
       display.modelCustomSvg.append(display.svgTextInput);
 
@@ -943,7 +950,7 @@ thisEqualsThat.oop = function()
         );
 
         display.modelCustomSvg.append(display.customSVGPane);
-        display.modelOutputTest.append(display.bottomModelSelectDiv);
+        display.modelOutputCtrl.append(display.bottomModelSelectDiv);
 
         display.googleConnect =
         $("<div />",
@@ -1921,16 +1928,15 @@ $().ready(function(){
 
           if ( wWidth <= 768 ) {
 
-            modelClassLI.on('click', function () {
-                body.removeClass('open');
-                $('.hamburger').removeClass('is-active');
-                menuItemList.css('width', '0');
-                setTimeout(function(){
-                  menuWrap.removeClass('active');
-                  openMenu.hide();
-                }, 600);
-
-            });
+              modelClassLI.on('click', function () {
+                  body.removeClass('open');
+                  $('.hamburger').removeClass('is-active');
+                  menuItemList.css('width', '0');
+                  setTimeout(function(){
+                    menuWrap.removeClass('active');
+                    openMenu.hide();
+                  }, 600);
+              });
 
           }
 
