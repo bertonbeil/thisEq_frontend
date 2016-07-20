@@ -170,7 +170,7 @@ div.copyrightContainer> p {
 
 .hamburger {
     position: absolute;
-    top: 5px;
+    top: 10px;
     left: 15px;
     width: 60px;
     height: 60px;
@@ -205,8 +205,8 @@ div.copyrightContainer> p {
     border-radius: 50%;
     background: #fff;
     z-index: -1;
-    -webkit-box-shadow: 0 5px 10px rgba(0, 0, 0, 0.5);
-    box-shadow: 0 5px 10px rgba(0, 0, 0, 0.5);
+    -webkit-box-shadow: 0 5px 6px rgba(0,0,0,0.4);
+    box-shadow: 0 5px 6px rgba(0,0,0,0.4);
     transition: all .6s cubic-bezier(0.95, -0.09, .35, .95);
     transform: scale(1);
 }
@@ -1387,27 +1387,27 @@ input.ui-colorpicker-hex-input {
     }
     .hamburger {
       bottom: 22px;
-      width: 58px;
-      height: 58px;
+      width: 56px;
+      height: 56px;
       padding: 13px;
-      padding-top: 16px;
+      padding-top: 20px;
     }
     .hamburger::before {
-      width: 58px;
-      height: 58px;
+      width: 56px;
+      height: 56px;
     }
     .hamburger-box {
       width: 30px;
-      height: 25px;
+      height: 18px;
     }
     .hamburger-inner, .hamburger-inner::before, .hamburger-inner::after {
       width: 30px;
     }
     .hamburger-inner::before {
-      top: -8px;
+      top: -7.5px;
     }
     .hamburger-inner::after {
-      bottom: -8px;
+      bottom: -7.5px;
     }
 }
 
