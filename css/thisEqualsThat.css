@@ -195,7 +195,7 @@ div.copyrightContainer> p {
     margin: 0;
     overflow: visible;
 }
-.hamburger::before{
+.hamburger::before {
     content: "";
     position: absolute;
     top: 0;
@@ -203,14 +203,20 @@ div.copyrightContainer> p {
     width: 60px;
     height: 60px;
     border-radius: 50%;
-    background: #fff;
+    background: rgba(255, 255, 255, .8);
     z-index: -1;
-    -webkit-box-shadow: 0 5px 6px rgba(0,0,0,0.4);
-    box-shadow: 0 5px 6px rgba(0,0,0,0.4);
+    -webkit-box-shadow: 0 3px 6px rgba(0,0,0,0.4);
+    box-shadow: 0 3px 6px rgba(0,0,0,0.4);
     transition: all .6s cubic-bezier(0.95, -0.09, .35, .95);
     transform: scale(1);
 }
-.hamburger.is-active.hamburger::before{
+.hamburger:hover::before {
+    -webkit-box-shadow: 0 5px 6px rgba(0,0,0,0.4);
+    box-shadow: 0 5px 6px rgba(0,0,0,0.4);
+    background: rgba(255, 255, 255, 1);
+}
+.hamburger.is-active.hamburger::before {
+    background: rgba(255, 255, 255, 1);
     transform: scale(40);
 }
 
