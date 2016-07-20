@@ -1947,28 +1947,32 @@ $().ready(function(){
           menuBtn.toggleClass('is-active');
 
           modelClassLI.on('dblclick', function () {
-            console.debug('double click');
 
-              body.removeClass('open');
-              $('.hamburger').removeClass('is-active');
-              menuItemList.css('width', '0');
-              setTimeout(function(){
-                menuWrap.removeClass('active');
-                openMenu.hide();
-              }, 600);
+              setTimeout(function () {
+                body.removeClass('open');
+                menuBtn.removeClass('is-active');
+                menuItemList.css('width', '0');
+                setTimeout(function(){
+                  menuWrap.removeClass('active');
+                  openMenu.hide();
+                }, 600);
+              }, 400);
 
           });
 
           if ( wWidth <= 768 ) {
 
               modelClassLI.on('click', function () {
-                  body.removeClass('open');
-                  $('.hamburger').removeClass('is-active');
-                  menuItemList.css('width', '0');
-                  setTimeout(function(){
-                    menuWrap.removeClass('active');
-                    openMenu.hide();
-                  }, 600);
+                  setTimeout(function () {
+                    body.removeClass('open');
+                    menuBtn.removeClass('is-active');
+                    menuItemList.css('width', '0');
+                    setTimeout(function(){
+                      menuWrap.removeClass('active');
+                      openMenu.hide();
+                    }, 600);
+                  }, 400);
+
               });
 
           }
