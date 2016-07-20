@@ -638,7 +638,8 @@ thisEqualsThat.oop = function()
         {
           elem.on('click', function ()
           {
-            var wWidth = $(window).outerWidth();
+            var   self   = $(this),
+                  wWidth = $(window).outerWidth();
 
                 if ( wWidth <= 768 )
                 {
@@ -671,6 +672,12 @@ thisEqualsThat.oop = function()
                             display.boxSliders.removeClass('active').addClass('shadow');
                             display.boxOutputCtrl.removeClass('active').addClass('shadow');
                         break;
+                    }
+                    if (! self.hasClass('active') )
+                    {
+                        display.boxCustomSvg.removeClass('shadow');
+                        display.boxSliders.removeClass('shadow');
+                        display.boxOutputCtrl.removeClass('shadow');
                     }
                 }
             });
