@@ -1,4 +1,7 @@
 @import url(https://fonts.googleapis.com/css?family=Roboto:400,700);
+html, body {
+    height: 100%;
+}
 body {
     font-family: Roboto;
     background: #EEEEEE;
@@ -132,8 +135,7 @@ div.bottomModelDiv {
 }
 .top {
     max-width: 960px;
-    line-height: 85px;
-    text-align: center;
+    line-height: 80px;
 }
 #top {
     -webkit-box-shadow: 0 2px 5px rgba(0,0,0,0.26);
@@ -144,8 +146,13 @@ div.bottomModelDiv {
     position: relative;
 }
 #logo> img {
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    margin-top: -26px;
+    margin-left: -110px;
     width: 220px;
-    vertical-align: middle;
+    height: 52px;
 }
 div.copyrightContainer {
     bottom: 0;
@@ -267,6 +274,12 @@ div.copyrightContainer> p {
   overflow-y: scroll;
   overflow-x: hidden;
 }
+#modelClassUL::-webkit-scrollbar {
+  display: none;
+}
+#modelClassUL::scrollbar {
+  display: none;
+}
 div.modelClasses {
     position: fixed;
     top: 0;
@@ -293,7 +306,7 @@ div.modelClasses.active{
     height: 80px;
     line-height: 80px;
     padding: 20px 0;
-    padding-left: 40px;
+    padding-left: 50px;
     text-align: left;
     color: #fff;
     text-decoration: none;
@@ -303,17 +316,9 @@ div.modelClasses.active{
     transition: all 0.2s ease;
     z-index: 0;
 }
-
 .ripplelink:hover {
-    z-index: 1000;
-    background: rgba(158, 158, 158, .5);
     /*box-shadow: 0 8px 17px 0 rgba(0, 0, 0, 0.2), 0 6px 20px 0 rgba(0, 0, 0, 0.19);
     -webkit-box-shadow: 0 8px 17px 0 rgba(0, 0, 0, 0.2), 0 6px 20px 0 rgba(0, 0, 0, 0.19);*/
-}
-.ripplelink:hover > img {
-    opacity: 1;
-    -webkit-transform: scale(1.15);
-    transform: scale(1.15);
 }
 .ink {
     display: block;
@@ -350,23 +355,41 @@ div.modelClasses.active{
     }
 }
 
-
-.modelClassLI img {
+.modelClassLI > img {
     float: right;
     width: 40px;
-    margin-right: 30px;
-    opacity: 0;
+    margin-right: 155px;
     -webkit-transform: scale(1);
     transform: scale(1);
     -webkit-transition: all .3s cubic-bezier(.4,0,.2,1);
     transition: all .3s cubic-bezier(.4,0,.2,1);
 }
-.modelClassLI h3 {
+.modelClassLI > h3 {
+    opacity: 0;
     font-family: Roboto;
     color: #000;
     font-weight: 400;
     line-height: 40px;
     float: left;
+    margin-left: -100%;
+    -webkit-transition: all .3s cubic-bezier(.4,0,.2,1);
+    transition: all .3s cubic-bezier(.4,0,.2,1);
+}
+.modelClassLI.active,
+.modelClassLI:hover {
+    z-index: 1000;
+    background: rgba(158, 158, 158, .5);
+}
+.modelClassLI.active > img,
+.modelClassLI:hover > img {
+    margin-right: 50px;
+    -webkit-transform: scale(1.15);
+    transform: scale(1.15);
+}
+.modelClassLI.active > h3,
+.modelClassLI:hover > h3 {
+    margin-left: 0;
+    opacity: 1;
 }
 
 .masterReferenceSVGSelectList {
@@ -382,7 +405,7 @@ div.modelClasses.active{
 
 div.model {
     position: relative;
-    margin-top: 10px;
+    margin-top: 20px;
 }
 div.modelInstance {
     width: 100%;
@@ -1215,14 +1238,17 @@ input.ui-colorpicker-hex-input {
 */
 
 @media screen and (max-width: 959px) {
-    #top{
-      height: 64px;
+    #top {
+      height: 60px;
     }
-    .top{
-      line-height: 65px;
+    .top {
+      line-height: 60px;
     }
-    #logo> img {
-      width: 180px;
+    #logo > img {
+      margin-top: -21px;
+      margin-left: -89px;
+      width: 178px;
+      height: 42px;
     }
     div.modelClasses {
       bottom: 0;
@@ -1230,20 +1256,22 @@ input.ui-colorpicker-hex-input {
       top: initial;
       left: initial;
     }
-    .hamburger{
+    .hamburger {
       bottom: 5px;
       right: 15px;
       top: initial;
       left: initial;
     }
-
-    div.model_options{
+    .hamburger:before {
+      background: rgba(255, 255, 255, 1);
+    }
+    div.model_options {
       width: 40%;
     }
     input.svgTextDescription, input.custom_svgNameInput {
       width: 205px;
     }
-    div.modelSvgOutput{
+    div.modelSvgOutput {
       width: 57%;
       height: 380px;
       padding-top: 40px;
@@ -1274,7 +1302,6 @@ input.ui-colorpicker-hex-input {
     .ch_description {
       margin-left: 20px;
     }
-
     div.customSVGPane.googleConnect {
       width: 100%;
     }
@@ -1282,7 +1309,18 @@ input.ui-colorpicker-hex-input {
 
 
 @media screen and (max-width: 768px){
-
+    #top {
+      height: 46px;
+    }
+    .top {
+      line-height: 46px;
+    }
+    #logo > img {
+      margin-top: -16px;
+      margin-left: -67px;
+      width: 134px;
+      height: 32px;
+    }
     #modelClassUL{
       padding-top: 40px;
     }
@@ -1383,6 +1421,9 @@ input.ui-colorpicker-hex-input {
         color: #fff;
         font-size: 200px;
         z-index: 9999;
+    }
+    div.customSVGPane.googleConnect {
+      display: none;
     }
 }
 
