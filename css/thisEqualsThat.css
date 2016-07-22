@@ -75,7 +75,7 @@ body::scrollbar {
   cursor: pointer;
 }
 
-.open-menu{
+.open-menu {
   position: fixed;
   top: 0;
   left: 0;
@@ -83,8 +83,13 @@ body::scrollbar {
   bottom: 0;
   overflow: hidden;
   background: rgba(0,0,0, .5);
+  z-index: -1;
+  opacity: 0;
+  -webkit-transition: all .3s cubic-bezier(.4,0,.2,1);
+}
+.open-menu.active {
   z-index: 500;
-  display: none;
+  opacity: 1;
 }
 #wrap {
     overflow-x: hidden;
@@ -184,49 +189,21 @@ div.copyrightContainer> p {
     padding: 13px;
     padding-top: 20px;
     background: transparent;
-    border-radius: 50%;
     display: inline-block;
     cursor: pointer;
-    transition-property: opacity, -webkit-filter;
-    -webkit-transition-property: opacity, -webkit-filter;
-    transition-property: opacity, filter;
-    transition-property: opacity, filter, -webkit-filter;
-    -webkit-transition-duration: 0.15s;
-    transition-duration: 0.15s;
-    -webkit-transition-timing-function: linear;
-    transition-timing-function: linear;
     font: inherit;
     color: inherit;
     text-transform: none;
     border: 0;
     margin: 0;
     overflow: visible;
+    z-index: 805;
+    -webkit-transition: all .3s cubic-bezier(.4,0,.2,1);
+    transition: all .3s cubic-bezier(.4,0,.2,1);
 }
-.hamburger::before {
-    content: "";
-    position: absolute;
-    top: 0;
-    left: 0;
-    width: 60px;
-    height: 60px;
-    border-radius: 50%;
-    background: rgba(255, 255, 255, .8);
-    z-index: -1;
-    -webkit-box-shadow: 0 3px 6px rgba(0,0,0,0.4);
-    box-shadow: 0 3px 6px rgba(0,0,0,0.4);
-    transition: all .6s cubic-bezier(0.95, -0.09, .35, .95);
-    transform: scale(1);
+.hamburger.is-active {
+    left: 40px;
 }
-.hamburger:hover::before {
-    -webkit-box-shadow: 0 5px 6px rgba(0,0,0,0.4);
-    box-shadow: 0 5px 6px rgba(0,0,0,0.4);
-    background: rgba(255, 255, 255, 1);
-}
-.hamburger.is-active.hamburger::before {
-    background: rgba(255, 255, 255, 1);
-    transform: scale(40);
-}
-
 .hamburger-box {
     width: 34px;
     height: 20px;
@@ -265,14 +242,11 @@ div.copyrightContainer> p {
 }
 
 #modelClassUL {
-  width: 0;
   height: 100%;
   margin: 0;
   padding: 0px;
-  padding-top: 100px;
+  padding-top: 120px;
   padding-bottom: 80px;
-  overflow-y: scroll;
-  overflow-x: hidden;
 }
 #modelClassUL::-webkit-scrollbar {
   display: none;
@@ -283,35 +257,32 @@ div.copyrightContainer> p {
 div.modelClasses {
     position: fixed;
     top: 0;
-    left: 0;
-    width: 90px;
-    height: 90px;
-    background: transparent;
-    z-index: 999;
+    left: -140px;
+    width: 140px;
+    height: 100vh;
+    background: #fff;
+    z-index: 800;
+    -webkit-transition: all .3s cubic-bezier(.4,0,.2,1);
+    transition: all .3s cubic-bezier(.4,0,.2,1);
     overflow: hidden;
 }
 div.modelClasses.active{
-    height: 100vh;
-    width: 350px;
-}
-
-.modelClassLI {
-
+    left: 0;
+    overflow: visible;
+    -webkit-box-shadow: 0 5px 12px rgba(0,0,0, .5);
+    box-shadow: 0 5px 12px rgba(0,0,0, .5);
 }
 
 .ripplelink {
     cursor: pointer;
     float: left;
     width: 100%;
-    height: 80px;
-    line-height: 80px;
+    height: 90px;
+    text-align: center;
     padding: 20px 0;
-    padding-left: 50px;
-    text-align: left;
     color: #fff;
     text-decoration: none;
     position: relative;
-    overflow: hidden;
     -webkit-transition: all .3s cubic-bezier(.4,0,.2,1);
     transition: all .3s cubic-bezier(.4,0,.2,1);
     z-index: 0;
@@ -355,7 +326,7 @@ div.modelClasses.active{
     }
 }
 
-.modelClassLI::after {
+/*.modelClassLI::after {
     content: "";
     position: absolute;
     width: 100%;
@@ -368,40 +339,45 @@ div.modelClasses.active{
 }
 .modelClassLI:hover::after {
     right: 0;
-}
+}*/
 .modelClassLI > img {
-    float: left;
-    width: 40px;
+    width: 50px;
     -webkit-transform: scale(1);
     transform: scale(1);
     -webkit-transition: all .3s cubic-bezier(.4,0,.2,1);
     transition: all .3s cubic-bezier(.4,0,.2,1);
 }
 .modelClassLI > h3 {
+    position: absolute;
+    top: 20px;
+    left: 130%;
+    background: #004D40;
+    padding: 7px 40px;
+    border-radius: 3px;
     opacity: 0;
-    font-family: Roboto;
-    color: #000;
+    color: rgba(255,255,255,0.87);
+    font-size: 21px;
     font-weight: 400;
-    line-height: 40px;
-    float: left;
-    margin-left: 100%;
+    visibility: hidden;
+    -webkit-box-shadow: 0 2px 5px rgba(0,0,0,0.26);
+    box-shadow: 0 2px 5px rgba(0,0,0,0.26);
     -webkit-transition: all .4s cubic-bezier(0.51, 0.49, 0.22, 1.29);
     transition: all .4s cubic-bezier(0.51, 0.49, 0.22, 1.29);
 }
 .modelClassLI.active,
 .modelClassLI:hover {
     z-index: 1000;
-    background: rgba(158, 158, 158, .5);
+    /*background: rgba(158, 158, 158, .5);*/
 }
 .modelClassLI.active > img,
 .modelClassLI:hover > img {
     -webkit-transform: scale(1.15);
     transform: scale(1.15);
 }
-.modelClassLI.active > h3,
 .modelClassLI:hover > h3 {
     opacity: 1;
-    margin-left: 35px;
+    left: 90%;
+    visibility: visible;
 }
 
 .masterReferenceSVGSelectList {
@@ -1262,20 +1238,8 @@ input.ui-colorpicker-hex-input {
       width: 178px;
       height: 42px;
     }
-    div.modelClasses {
-      bottom: 0;
-      right: 0;
-      top: initial;
-      left: initial;
-    }
     .hamburger {
-      bottom: 5px;
-      right: 15px;
-      top: initial;
-      left: initial;
-    }
-    .hamburger:before {
-      background: rgba(255, 255, 255, 1);
+      top: 1px;
     }
     div.model_options {
       width: 40%;
@@ -1333,17 +1297,26 @@ input.ui-colorpicker-hex-input {
       width: 134px;
       height: 32px;
     }
+    .hamburger {
+      top: 0;
+      width: 50px;
+      height: 50px;
+      padding: 0;
+    }
+    .hamburger.is-active {
+      left: 45px;
+      top: 20px;
+    }
     #modelClassUL{
-      padding-top: 40px;
+      padding-top: 80px;
     }
     .ripplelink {
-      height: 70px;
+      height: 80px;
+      margin: 0;
+      padding: 20px 0;
     }
     .modelClassLI img {
-      width: 30px;
-    }
-    .modelClassLI h3 {
-      line-height: 32px;
+      width: 40px;
     }
     div.model_box_ctrl {
       position: relative;
@@ -1441,30 +1414,24 @@ input.ui-colorpicker-hex-input {
 
 @media screen and (max-width: 550px) {
     div.modelClasses.active {
-      width: 250px;
+      width: 100px;
+    }
+    .ripplelink {
+      height: 70px;
     }
     .modelClassLI img {
-      opacity: 1;
-      width: 27px;
-      margin-right: 20px;
+      width: 30px;
     }
     .modelClassLI h3 {
-      line-height: 28px;
-      font-size: 17px;
+      top: 18px;
+      left: 87%;
+      font-size: 15px;
     }
     input.svgTextDescription, input.custom_svgNameInput {
-        width: 85%;
+      width: 85%;
     }
-    .hamburger {
-      bottom: 22px;
-      width: 56px;
-      height: 56px;
-      padding: 13px;
-      padding-top: 20px;
-    }
-    .hamburger::before {
-      width: 56px;
-      height: 56px;
+    .hamburger.is-active {
+      left: 25px;
     }
     .hamburger-box {
       width: 30px;
@@ -1482,13 +1449,20 @@ input.ui-colorpicker-hex-input {
 }
 
 @media screen and (max-width: 400px) {
+    .hamburger.is-active {
+      top: 10px;
+    }
     #modelClassUL {
       padding-top: 60px;
     }
+    .modelClassLI h3 {
+      top: 13.5px;
+      left: 87%;
+      font-size: 14px;
+    }
     .ripplelink {
       height: 60px;
-      padding: 16px 0;
-      padding-left: 30px;
+      padding: 15px 0;
     }
     div.modelSvgOutput {
       height: 330px;

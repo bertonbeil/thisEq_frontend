@@ -127,24 +127,24 @@ thisEqualsThat.oop = function()
             $(this).addClass('active');
             $(this).siblings().removeClass('active');
 
-            var ink, d, x, y;
-
-                if($(this).find(".ink").length === 0){
-                    $(this).prepend("<span class='ink'></span>");
-                }
-
-                ink = $(this).find(".ink");
-                ink.removeClass("animate");
-
-                if(!ink.height() && !ink.width()){
-                    d = Math.max($(this).outerWidth(), $(this).outerHeight());
-                    ink.css({height: d, width: d});
-                }
-
-                x = event.pageX - $(this).offset().left - ink.width()/2;
-                y = event.pageY - $(this).offset().top - ink.height()/2;
-
-                ink.css({top: y+'px', left: x+'px'}).addClass("animate");
+            // var ink, d, x, y;
+            //
+            //     if($(this).find(".ink").length === 0){
+            //         $(this).prepend("<span class='ink'></span>");
+            //     }
+            //
+            //     ink = $(this).find(".ink");
+            //     ink.removeClass("animate");
+            //
+            //     if(!ink.height() && !ink.width()){
+            //         d = Math.max($(this).outerWidth(), $(this).outerHeight());
+            //         ink.css({height: d, width: d});
+            //     }
+            //
+            //     x = event.pageX - $(this).offset().left - ink.width()/2;
+            //     y = event.pageY - $(this).offset().top - ink.height()/2;
+            //
+            //     ink.css({top: y+'px', left: x+'px'}).addClass("animate");
 
           }
         );
@@ -169,11 +169,12 @@ thisEqualsThat.oop = function()
     this.imageURL = this.imageBaseURL+modelClassName+".svg";
     this.modelClassListLI =
       $("<li />",
-        { "class": "modelClassLI ripplelink cyan"
+        { "class": "modelClassLI ripplelink cyan",
         }
-       ).data("modelClass", this)
-       .append( $("<img />", { src: this.imageURL } ))
-       .append( $("<h3 />", { text: this.name } ));
+      ).data("modelClass", this)
+       .append( $('<h3>' + this.name + '</h3>' ).addClass('modelDesc') )
+       .append( $("<img />", { src: this.imageURL } ).addClass('modelImg') );
+
   }
   this.ModelClass.prototype.imageBaseURL =  "/static/graphics/thisEquals/modelClasses/";
   this.ModelClass.prototype.getModelInstance = function(successFunction)
@@ -1941,7 +1942,7 @@ $().ready(function(){
 
     $('body').append('<div class="copyrightContainer"><p>© This Equals ltd 2016</div></p>')
              .append('<div class="open-menu"></div>');
-    $('.modelClasses').append('<button class="hamburger hamburger--spin-r" type="button" aria-label="Menu" aria-controls="navigation"><span class="hamburger-box"><span class="hamburger-inner"></span></span></button>');
+    $('body').append('<button class="hamburger hamburger--spin-r" type="button" aria-label="Menu" aria-controls="navigation"><span class="hamburger-box"><span class="hamburger-inner"></span></span></button>');
 
     $.fn.coloPick = function() {
         console.info('CP created');
@@ -1961,86 +1962,58 @@ $().ready(function(){
 
 
 
-    $('.hamburger').on('click', function(){
+    $('.hamburger').on('click', function() {
 
-          var menuBtn = $(this),
-              wWidth = $(window).outerWidth(),
-              openMenu = $('.open-menu'),
-              menuWrap = $('.modelClasses'),
-              menuItemList = $('#modelClassUL'),
-              modelClassLI = $('.modelClassLI'),
-              body = $('body');
+        var menuBtn = $(this),
+            wWidth = $(window).outerWidth(),
+            openMenu = $('.open-menu'),
+            menuWrap = $('.modelClasses'),
+            menuItemList = $('#modelClassUL'),
+            modelClassLI = $('.modelClassLI'),
+            body = $('body');
 
-          menuBtn.toggleClass('is-active');
+        menuBtn.toggleClass('is-active');
 
-          modelClassLI.on('dblclick', function () {
+        modelClassLI.on('dblclick', function() {
+            closeMenu(body, menuBtn, menuWrap, openMenu);
+        });
 
-              setTimeout(function () {
-                body.removeClass('open');
-                menuBtn.removeClass('is-active');
-                menuItemList.css('width', '0');
-                setTimeout(function(){
-                  menuWrap.removeClass('active');
-                  openMenu.hide();
-                }, 600);
-              }, 400);
+        if (wWidth <= 768) {
+            modelClassLI.on('click', function() {
+                closeMenu(body, menuBtn, menuWrap, openMenu);
+            });
+        }
 
-          });
+        if (menuBtn.hasClass('is-active')) {
 
-          if ( wWidth <= 768 ) {
+            showMenu(body, menuWrap, openMenu);
 
-              modelClassLI.on('click', function () {
-                  setTimeout(function () {
-                    body.removeClass('open');
-                    menuBtn.removeClass('is-active');
-                    menuItemList.css('width', '0');
-                    setTimeout(function(){
-                      menuWrap.removeClass('active');
-                      openMenu.hide();
-                    }, 600);
-                  }, 400);
+            openMenu.on('click', function() {
+                closeMenu(body, menuBtn, menuWrap, openMenu);
+            });
 
-              });
-
-          }
-
-
-          if ( menuBtn.hasClass('is-active') ) {
-
-              openMenu.show();
-              body.addClass('open');
-              menuWrap.addClass('active');
-              setTimeout(function(){
-                menuItemList.css('width', '100%');
-              }, 600);
-
-              openMenu.on('click', function(){
-                  menuItemList.css('width', '0');
-                  body.removeClass('open');
-                  $('.hamburger').removeClass('is-active');
-                  setTimeout(function(){
-                    menuWrap.removeClass('active');
-                    openMenu.hide();
-                  }, 600);
-              });
-
-          } else {
-
-            body.removeClass('open');
-            $('.hamburger').removeClass('is-active');
-            menuItemList.css('width', '0');
-            setTimeout(function(){
-              menuWrap.removeClass('active');
-              openMenu.hide();
-            }, 600);
-
-          }
+        } else {
+            closeMenu(body, menuBtn, menuWrap, openMenu);
+        }
 
     });
 
 
 });
 
+
+function closeMenu(b, m, w, o) {
+  b.removeClass('open');
+  m.removeClass('is-active');
+  w.removeClass('active');
+  o.removeClass('active');
+}
+
+function showMenu(b, w, o) {
+  b.addClass('open');
+  w.addClass('active');
+  o.addClass('active');
+}
 
 
 $('head').append('<script src="https://use.fontawesome.com/cee7f18682.js"></script>');
