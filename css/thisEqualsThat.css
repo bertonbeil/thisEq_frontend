@@ -441,8 +441,8 @@ div.inputFieldElement {
     display: block;
     width: 100%;
     float: left;
-    margin-bottom: 10px;
-    border-bottom: 1px solid #9E9E9E;
+    padding-bottom: 10px;
+    /*border-bottom: 1px solid #9E9E9E;*/
 }
 div.inputFieldElement> select {
     float: right;
@@ -469,8 +469,8 @@ div.inputFieldLabel {
     top: -38px;
     left: 120%;
     width: inherit;
-    background: #555;
-    color: #fff;
+    background: #ECEFF1;
+    color: rgba(0,0,0,0.87);
     padding: 20px;
     border-radius: 3px;
     z-index: -1;
@@ -496,24 +496,20 @@ div.inputFieldSlider {
     clear: both;
 }
 div.inputFieldSlider> .ui-state-default {
+    outline: none;
     width: 20px;
     height: 20px;
     border-radius: 50%;
     top: -10px;
     background: #2196F3;
     border: 0;
-    box-shadow: 0 2px 2px 0 rgba(0, 0, 0, 0.14), 0 3px 1px -2px rgba(0, 0, 0, 0.2), 0 1px 5px 0 rgba(0, 0, 0, 0.12);
-}
-div.inputFieldSlider> .ui-state-hover, div.inputFieldSlider>.ui-widget-content .ui-state-hover {
-    box-shadow: 0 0 8px rgba(0, 0, 0, 0.16), 0 8px 16px rgba(0, 0, 0, 0.36);
-}
-div.inputFieldSlider> .ui-state-active, div.inputFieldSlider> .ui-widget-content .ui-state-active {
-    box-shadow: 0 0 8px rgba(0, 0, 0, 0.16), 0 8px 16px rgba(0, 0, 0, 0.36);
 }
 div.inputFieldSlider .ui-slider-range {
     background: #03A9F4;
 }
+
 input.inputFieldText[type=text] {
+    outline: none;
     float: right;
     background: transparent;
     padding-top: 3px;
@@ -1515,6 +1511,7 @@ input.ui-colorpicker-hex-input {
 .hudItem
 { display: inline-block;
   min-width: 32px;
+  margin-right: 15px;
 }
 .hudCollection
 { height: 32px;
@@ -1545,7 +1542,37 @@ path.highlight, .highlight path
 .spectrumAlphaOnly .sp-fill, .spectrumAlphaOnly .sp-top-inner, .spectrumAlphaOnly .sp-button-container
 { display: none;
 }
-
+.sp-container {
+    border-radius: 3px;
+    background-color: #ECECEC;
+    border: none;
+    padding: 0;
+    -webkit-box-shadow: 0px 3px 5px rgba(0, 0, 0, .5);
+    box-shadow: 0px 3px 5px rgba(0, 0, 0, .5);
+}
+.sp-alpha {
+  bottom: -12px;
+  height: 1px;
+}
+.sp-alpha-inner {
+    border: solid 1px #BDBDBD;
+}
+.sp-alpha-handle {
+    position: absolute;
+    top: -9px;
+    width: 18px;
+    height: 18px;
+    left: 50%;
+    cursor: pointer;
+    border: none;
+    border-radius: 50%;
+    background: #2196F3;
+    /* opacity: .8; */
+}
+.sp-picker-container, .sp-palette-container {
+  padding-left: 20px;
+  padding-right: 20px;
+}
 
 /* inputFieldHUD */
 
