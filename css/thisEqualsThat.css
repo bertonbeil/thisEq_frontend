@@ -1,4 +1,10 @@
 @import url(https://fonts.googleapis.com/css?family=Roboto:400,700);
+
+.displayNone
+{ display: none !important;
+}
+
+
 html, body {
     height: 100%;
 }
@@ -6,6 +12,7 @@ body {
     font-family: Roboto;
     background: #EEEEEE;
     padding-bottom: 50px;
+    margin: 0px;
 }
 body.open {
     overflow: hidden;
@@ -168,6 +175,7 @@ div.copyrightContainer {
     overflow: hidden;
 }
 div.copyrightContainer> p {
+    margin: 0px;
     margin-left: 15px;
     line-height: 50px;
 }
@@ -200,6 +208,7 @@ div.copyrightContainer> p {
     z-index: 805;
     -webkit-transition: all .3s cubic-bezier(.4,0,.2,1);
     transition: all .3s cubic-bezier(.4,0,.2,1);
+    outline: none;
 }
 .hamburger.is-active {
     left: 40px;
@@ -348,10 +357,11 @@ div.modelClasses.active{
 }
 .modelClassLI > h3 {
     position: absolute;
-    top: 20px;
+    top: 23px;
     left: 130%;
     background: #004D40;
     padding: 7px 40px;
+    margin: 0px;
     border-radius: 3px;
     opacity: 0;
     color: rgba(255,255,255,0.87);
@@ -427,6 +437,7 @@ div.modelSliders, div.modelOutputCtrl, div.modelSvgOutput, div.modelCustomSvg {
     box-shadow: 0 1px 6px 0 rgba(0, 0, 0, 0.12), 0 1px 6px 0 rgba(0, 0, 0, 0.12);
 }
 div.inputFieldElement {
+    position: relative;
     display: block;
     width: 100%;
     float: left;
@@ -446,12 +457,36 @@ div.inputFieldElement> select {
     font-size: 16px;
     border-bottom: 0;
 }
+div.inputFieldElement:hover div.inputFieldLabel {
+    position: absolute;
+    top: -38px;
+    left: 104%;
+    z-index: 999;
+    opacity: 1;
+}
 div.inputFieldLabel {
+    position: absolute;
+    top: -38px;
+    left: 120%;
+    width: inherit;
+    background: #555;
+    color: #fff;
+    padding: 20px;
+    border-radius: 3px;
+    z-index: -1;
+    opacity: 0;
+    -webkit-box-shadow: 0px 3px 7px rgba(0, 0, 0, .6);
+    box-shadow: 0px 3px 7px rgba(0, 0, 0, .6);
+    -webkit-transition: all .3s cubic-bezier(.4,0,.2,1);
+    transition: all .3s cubic-bezier(.4,0,.2,1);
+}
+div.inputFieldLabelBg {
     float: left;
     padding-top: 3px;
     font-size: 16px;
     margin-bottom: 10px;
 }
+
 div.inputFieldSlider {
     height: 1px;
     border: 0;
@@ -1067,29 +1102,29 @@ input.ui-colorpicker-hex-input {
 
 
 
-.name_watts> .inputFieldLabel, .name_count> .inputFieldLabel, .name_time> .inputFieldLabel, .name_energy> .inputFieldLabel, .name_mass> .inputFieldLabel, .name_timeToBreathOut> .inputFieldLabel, .name_volume_100> .inputFieldLabel, .name_volume_inAir> .inputFieldLabel, .name_number> .inputFieldLabel, .name_density> .inputFieldLabel, .name_volume> .inputFieldLabel, .name_colours> .inputFieldLabel, .name_randomLayout> .inputFieldLabel, .name_numberOfClones> .inputFieldLabel, .name_ratios> .inputFieldLabel, .name_efficiency> .inputFieldLabel, .modelOutputContainer> .containerLabel, .visualisationOutputContainer> .containerLabel {
+.name_watts> .inputFieldLabelBg, .name_count> .inputFieldLabelBg, .name_time> .inputFieldLabelBg, .name_energy> .inputFieldLabelBg, .name_mass> .inputFieldLabelBg, .name_timeToBreathOut> .inputFieldLabelBg, .name_volume_100> .inputFieldLabelBg, .name_volume_inAir> .inputFieldLabelBg, .name_number> .inputFieldLabelBg, .name_density> .inputFieldLabelBg, .name_volume> .inputFieldLabelBg, .name_colours> .inputFieldLabelBg, .name_randomLayout> .inputFieldLabelBg, .name_numberOfClones> .inputFieldLabelBg, .name_ratios> .inputFieldLabelBg, .name_efficiency> .inputFieldLabelBg, .modelOutputContainer> .containerLabel, .visualisationOutputContainer> .containerLabel {
     background-size: cover;
 }
 
 /*lightbulb*/
 
-.name_watts> .inputFieldLabel {
+.name_watts> .inputFieldLabelBg {
     background-image: url(/static/graphics/thisEquals/icons/energy.svg);
     background-repeat: no-repeat;
     width: 27px;
     height: 27px;
 }
-.name_count> .inputFieldLabel {
+.name_count> .inputFieldLabelBg {
     background-image: url(/static/graphics/thisEquals/icons/LightBulb.svg);
     width: 27px;
     height: 27px;
 }
-.name_time> .inputFieldLabel {
+.name_time> .inputFieldLabelBg {
     background-image: url(/static/graphics/thisEquals/icons/time_second.svg);
     width: 27px;
     height: 27px;
 }
-.name_energy> .inputFieldLabel {
+.name_energy> .inputFieldLabelBg {
     background-image: url(/static/graphics/thisEquals/icons/energ_j.svg);
     width: 27px;
     height: 27px;
@@ -1097,22 +1132,22 @@ input.ui-colorpicker-hex-input {
 
 /*CO2*/
 
-.name_mass> .inputFieldLabel {
+.name_mass> .inputFieldLabelBg {
     background-image: url(/static/graphics/thisEquals/icons/mass_kg.svg);
     width: 27px;
     height: 27px;
 }
-.name_timeToBreathOut> .inputFieldLabel {
+.name_timeToBreathOut> .inputFieldLabelBg {
     background-image: url(/static/graphics/thisEquals/icons/time_second.svg);
     width: 27px;
     height: 27px;
 }
-.name_volume_100> .inputFieldLabel {
+.name_volume_100> .inputFieldLabelBg {
     background-image: url(/static/graphics/thisEquals/icons/volume_m3.svg);
     width: 27px;
     height: 27px;
 }
-.name_volume_inAir> .inputFieldLabel {
+.name_volume_inAir> .inputFieldLabelBg {
     background-image: url(/static/graphics/thisEquals/icons/volume_air.svg);
     width: 27px;
     height: 27px;
@@ -1120,12 +1155,12 @@ input.ui-colorpicker-hex-input {
 
 /*cube*/
 
-.name_density> .inputFieldLabel {
+.name_density> .inputFieldLabelBg {
     background-image: url(/static/graphics/thisEquals/icons/volume_air.svg);
     width: 27px;
     height: 27px;
 }
-.name_volume> .inputFieldLabel {
+.name_volume> .inputFieldLabelBg {
     background-image: url(/static/graphics/thisEquals/icons/volume_m3.svg);
     width: 27px;
     height: 27px;
@@ -1133,12 +1168,12 @@ input.ui-colorpicker-hex-input {
 
 /*preson*/
 
-.name_number> .inputFieldLabel {
+.name_number> .inputFieldLabelBg {
     background-image: url(/static/graphics/thisEquals/icons/person_amuont.svg);
     width: 27px;
     height: 27px;
 }
-.analysis> .inputFieldLabel {
+.analysis> .inputFieldLabelBg {
     background-image: url(/static/graphics/thisEquals/icons/analysis.svg);
     width: 27px;
     height: 27px;
@@ -1146,22 +1181,22 @@ input.ui-colorpicker-hex-input {
 
 /*PeopleRationPLay*/
 
-.name_colours> .inputFieldLabel {
+.name_colours> .inputFieldLabelBg {
     background-image: url(/static/graphics/thisEquals/icons/color_pick.svg);
     width: 27px;
     height: 27px;
 }
-.name_randomLayout> .inputFieldLabel {
+.name_randomLayout> .inputFieldLabelBg {
     background-image: url(/static/graphics/thisEquals/icons/randome.svg);
     width: 27px;
     height: 27px;
 }
-.name_numberOfClones> .inputFieldLabel {
+.name_numberOfClones> .inputFieldLabelBg {
     background-image: url(/static/graphics/thisEquals/icons/person_amuont.svg);
     width: 27px;
     height: 27px;
 }
-.name_ratios> .inputFieldLabel {
+.name_ratios> .inputFieldLabelBg {
     background-image: url(/static/graphics/thisEquals/icons/rations.svg);
     width: 27px;
     height: 27px;
@@ -1169,7 +1204,7 @@ input.ui-colorpicker-hex-input {
 
 /*CPS*/
 
-.name_efficiency> .inputFieldLabel {
+.name_efficiency> .inputFieldLabelBg {
     background-image: url(/static/graphics/thisEquals/icons/efficiency.svg);
     width: 27px;
     height: 27px;
@@ -1473,4 +1508,58 @@ input.ui-colorpicker-hex-input {
     div.svgModelRoot {
       height: 250px;
     }
+}
+
+
+
+.hudItem
+{ display: inline-block;
+  min-width: 32px;
+}
+.hudCollection
+{ height: 32px;
+}
+
+.hudItem.colorPicker
+{ height:32px;
+  background-image: url('/static/graphics/thisEquals/svgHUD/colorPicker.png');
+  background-size: contain;
+  background-repeat: no-repeat;
+}
+
+@keyframes highlightSVGPath
+{  0% { stroke: "black";}
+  15% { stroke: "red";  }
+  30% { stroke: "green";}
+  45% { stroke: "blue"; }
+  60% { stroke: "white";}
+  75% { stroke: "grey"; }
+}
+
+path.highlight, .highlight path
+{ animation-name:             highlightSVGPath;
+  animation-duration:         8s;
+  animation-iteration-count:  infinite;
+}
+
+.spectrumAlphaOnly .sp-fill, .spectrumAlphaOnly .sp-top-inner, .spectrumAlphaOnly .sp-button-container
+{ display: none;
+}
+
+
+/* inputFieldHUD */
+
+
+/* ratioColorTotal */
+.ratioColorTotal > div:hover
+{ background: lightgrey;
+}
+
+.ratioColor
+{ height: 32px;
+}
+.ratioColor > .closeBox
+{ height: 10px;
+  width: 10px;
+  float: right;
 }
