@@ -396,7 +396,6 @@ div.modelClasses.active{
 .userSelectedReferenceSVG_selected {
     background-color: lightgrey;
 }
-
 div.model {
     position: relative;
     margin-top: 20px;
@@ -857,7 +856,6 @@ div.toggleFeatures> label {
 div.toggleFeatures> label:last-child {
     margin-right: 0px;
 }
-
 
 
 * {
@@ -1513,7 +1511,8 @@ input.ui-colorpicker-hex-input {
 { height: 32px;
 }
 
-.hudItem.colorPicker
+.hudItem.colorPicker,
+.fillManager.hudItem
 { height:32px;
   background-image: url('/static/graphics/thisEquals/svgHUD/colorPicker.png');
   background-size: contain;
